@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./src/screen/HomeScreen";
+import SettingScreen from "./src/screen/SettingScreen";
+import CustomerScreen from "./src/screen/CustomerScreen";
+import CustomerProfile from "./src/screen/CustomerProfile";
+import ShowCustomer from "./src/screen/ShowCustomer";
+import MainContainer from "./src/MainContainer";
+import { NavigationContainer } from "@react-navigation/native";
+import InfiniteScroll from "./src/screen/InfiniteScroll";
+import CardProfile from "./src/screen/CardProfile";
 
-export default function App() {
+function App() {
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="main"
+        screenOptions={{ headerShown: true }}
+      >
+        <Stack.Screen name="main" component={MainContainer} />
+        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="setting" component={SettingScreen} />
+        <Stack.Screen name="show" component={ShowCustomer} />
+        <Stack.Screen name="profile" component={CustomerProfile} />
+        <Stack.Screen name="customer" component={CustomerScreen} />
+        <Stack.Screen name="infiniteScroll" component={InfiniteScroll} />
+        <Stack.Screen name="cardProfile" component={CardProfile} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
